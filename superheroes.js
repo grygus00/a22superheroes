@@ -502,9 +502,29 @@ const superheroes = [
   },
 ];
 
-alert(
-  "1. Checking if JS file is linked up correctly. \n2. Always open the inspector/console when woorking with the JS \n3. Write your code in the end of the js-file \n4. Don't use alert boxes for UI... \n5. Comment this line out - using /* */"
-);
+// alert(
+//   "1. Checking if JS file is linked up correctly. \n2. Always open the inspector/console when woorking with the JS \n3. Write your code in the end of the js-file \n4. Don't use alert boxes for UI... \n5. Comment this line out - using /* */"
+// );
 console.table(superheroes);
 
 /* write your code here */
+superheroes.forEach(copySuper);
+
+function copySuper(superHero) {
+  const template = document.querySelector("template").content;
+  const clone = template.cloneNode(true);
+  clone.querySelector(".image").src = superHero.img;
+
+  clone.querySelector(".name").textContent = superHero.alias;
+  clone.querySelector(".color").textContent = superHero.primaryColor;
+  clone.querySelector(".enemies").textContent = superHero.enemies;
+  if (superHero.cape == true) {
+    clone.querySelector(".cape").textContent = "YES!";
+  } else {
+    clone.querySelector(".cape").textContent = "no!";
+  }
+  clone.querySelector(".speed").textContent = superHero.speed;
+  clone.querySelector(".years").textContent = superHero.dob.year;
+  const parent = document.querySelector("main");
+  parent.appendChild(clone);
+}
